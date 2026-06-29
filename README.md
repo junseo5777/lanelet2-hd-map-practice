@@ -41,7 +41,7 @@ K-City 전체 지도 파일을 바로 사용하기 전에, 극히 일부 구간�
 
 사용 파일:
 
-* `partial_lanelet2_final.osm`
+* `partial_lanelet2.osm`
 
 ![K-City 일부 구간 RViz 시각화](images/kcity_partial_rviz.png)
 
@@ -61,8 +61,8 @@ JOSM에서 동국대학교 만해광장 지도를 불러와 간단한 Lanelet2 H
 
 사용 파일:
 
-* `만해광장_연습.osm`
-* `만해광장_HD_MAP.osm`
+* `manhae_practice1.osm`
+* `manhae_practice2.osm`
 
 ![동국대학교 만해광장 RViz 시각화](images/manhae1_rviz.png)
 
