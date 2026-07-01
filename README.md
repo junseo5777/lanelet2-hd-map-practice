@@ -6,7 +6,7 @@
 
 현재는 국토지리정보원에서 제공하는 K-City 지도 파일의 일부 구간을 이용해 Lanelet2 구조를 연습하고 있으며, 동국대학교 만해광장 지도를 기반으로 간단한 Lanelet2 HD Map을 제작해보았습니다.
 
-최종 목표는 지금까지의 연습 과정을 바탕으로 K-City 전체 HD Map을 제작하고, 이를 ROS2 기반 자율주행 시스템에서 활용하는 것입니다.
+
 
 ---
 
@@ -20,16 +20,15 @@
 * `left`, `right`, `type=lanelet`, `subtype=road` 등 Lanelet2 기본 태그 분석
 * K-City 일부 구간을 이용한 Lanelet2 태그 적용 연습
 * 동국대학교 만해광장 간단한 HD Map 제작
-* 향후 K-City 전체 HD Map 제작 과정 정리
-* ROS2 및 RViz에서 Lanelet2 지도 시각화 준비
+* ROS2 및 RViz에서 Lanelet2 지도 시각화 
 
 ---
 
-## 3. 현재까지 진행한 작업
+## 3. Lanelet 연습
 
 ### 3.1 K-City 일부 구간 Lanelet2 연습
 
-K-City 전체 지도 파일을 바로 사용하기 전에, 극히 일부 구간만 추출하여 Lanelet2 구조를 연습했습니다.
+국토지리정보원에서 제공해주는 K-City 벡터 데이터의 극히 일부 구간만 추출하여 Lanelet2 구조를 연습했습니다.
 
 이 과정에서 다음 내용을 연습했습니다.
 
@@ -43,6 +42,7 @@ K-City 전체 지도 파일을 바로 사용하기 전에, 극히 일부 구간�
 
 * `partial_lanelet2.osm`
 
+![K-City 일부 구간 JOSM 시각화](images/kcity_partial_josm.png)
 ![K-City 일부 구간 RViz 시각화](images/kcity_partial_rviz.png)
 
 ---
@@ -65,6 +65,28 @@ JOSM에서 동국대학교 만해광장 지도를 불러와 간단한 Lanelet2 H
 * `manhae_practice2.osm`
 
 ![동국대학교 만해광장 RViz 시각화](images/manhae1_rviz.png)
+
+![동국대학교 만해광장 RViz 시각화](images/manhae2_rviz.png)
+빨간선은 정지선, 초록선은 신호등, 보라색 선은 속도 제한 구역을 나타내며 초록색 점은 레엔렛의 중간 지점을 나타냅니다.
+
+
+---
+
+### 3.3 RViz 시각화
+
+JOSM에서 작성한 Lanelet2 OSM XML 파일이 ROS2 환경에서도 정상적으로 활용될 수 있는지 확인하기 위해 Python 기반 시각화 노드를 작성했습니다.
+
+해당 노드에서는 OSM XML 파일을 파싱하여 node, way, relation 정보를 읽고, 그중 type=lanelet으로 지정된 lanelet relation을 추출했습니다. 이후 각 lanelet relation에 포함된 left boundary way와 right boundary way를 읽어 좌우 경계선을 RViz2의 MarkerArray 형태로 시각화했습니다.
+
+시각화 과정에서는 다음 내용을 확인했습니다.
+
+OSM XML 파일 내부의 node 좌표가 정상적으로 읽히는지 확인
+lanelet relation의 left, right member가 올바르게 연결되어 있는지 확인
+JOSM에서 작성한 좌우 boundary 구조가 RViz2에서도 동일한 형태로 표시되는지 확인
+여러 개의 lanelet이 하나의 HD Map 구조로 함께 시각화되는지 확인
+Lanelet2 기반 지도 데이터를 ROS2 노드에서 활용할 수 있는지 확인
+
+좌우 boundary way를 중심으로 시각화했으며, manhae2 파일에서는 신호등과 정지선, 속도 제한 구역까지 만들어보았습니다.
 
 ---
 
