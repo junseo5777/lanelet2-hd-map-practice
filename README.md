@@ -42,7 +42,10 @@
 
 * `partial_lanelet2.osm`
 
-<img src="images/kcity_partial_josm.png" alt="K-City 일부 구간 JOSM 시각화" width="420">
+<p align="center">
+  <img src="images/kcity_partial_josm.png" alt="K-City 일부 구간 JOSM 시각화" width="420">
+</p>
+
 ![K-City 일부 구간 RViz 시각화](images/kcity_partial_rviz.png)
 
 ---
