@@ -81,13 +81,7 @@ JOSM에서 작성한 Lanelet2 OSM XML 파일이 ROS2 환경에서도 정상적�
 
 해당 노드에서는 OSM XML 파일을 파싱하여 node, way, relation 정보를 읽고, 그중 type=lanelet으로 지정된 lanelet relation을 추출했습니다. 이후 각 lanelet relation에 포함된 left boundary way와 right boundary way를 읽어 좌우 경계선을 RViz2의 MarkerArray 형태로 시각화했습니다.
 
-시각화 과정에서는 다음 내용을 확인했습니다.
-
-OSM XML 파일 내부의 node 좌표가 정상적으로 읽히는지 확인
-lanelet relation의 left, right member가 올바르게 연결되어 있는지 확인
-JOSM에서 작성한 좌우 boundary 구조가 RViz2에서도 동일한 형태로 표시되는지 확인
-여러 개의 lanelet이 하나의 HD Map 구조로 함께 시각화되는지 확인
-Lanelet2 기반 지도 데이터를 ROS2 노드에서 활용할 수 있는지 확인
+OSM 파일의 node 좌표는 위도와 경도 형태로 저장되어 있기 때문에, RViz2에서 바로 사용하기에는 적합하지 않았습니다. 따라서 Lanelet2의 `Origin`과 `UtmProjector`를 사용해 기준 원점을 설정하고, 각 node의 위도/경도 값을 UTM 기반의 map 좌표계로 변환했습니다. 변환된 x, y 좌표를 `geometry_msgs/Point`로 저장한 뒤 MarkerArray에 넣어 RViz2의 `map` frame에서 시각화했습니다.
 
 좌우 boundary way를 중심으로 시각화했으며, manhae2 파일에서는 신호등과 정지선, 속도 제한 구역까지 만들어보았습니다.
 
