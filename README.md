@@ -42,7 +42,7 @@
 
 * `partial_lanelet2.osm`
 
-![K-City 일부 구간 JOSM 시각화](images/kcity_partial_josm.png)
+<img src="images/kcity_partial_josm.png" alt="K-City 일부 구간 JOSM 시각화" width="420">
 ![K-City 일부 구간 RViz 시각화](images/kcity_partial_rviz.png)
 
 ---
@@ -125,4 +125,3 @@ lanelet relation의 기본 태그 예시는 다음과 같습니다.
 * ROS2 Humble
 * RViz2
 * Python
-
